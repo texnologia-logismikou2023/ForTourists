@@ -29,10 +29,32 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+
+
+
+//change3
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import java.util.List;
+import java.util.ArrayList;
+
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
+
+
+
+
+    //change1
+    RecyclerView recyclerView;
+    AttractionsAdapter attractionsAdapter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationProviderClient = (FusedLocationProviderClient) LocationServices.getFusedLocationProviderClient(this);
 
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).
+                //withPermission(Manifest.permission.ACCESS_FINE_LOCATION);
                 withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
@@ -60,7 +83,45 @@ public class MainActivity extends AppCompatActivity {
                         permissionToken.cancelPermissionRequest();
                     }
                 }).check();
+
+
+
+
+        //change2
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recycler_attractions);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Dummy data for demonstration purposes (replace with your data retrieval logic)
+        List<Attraction> attractions = getAttractions();
+
+        // Initialize AttractionsAdapter and set it to RecyclerView
+        attractionsAdapter = new AttractionsAdapter(attractions, this);
+        recyclerView.setAdapter(attractionsAdapter);
+
+
+
+
     }
+
+
+
+
+    //change3
+    private List<Attraction> getAttractions() {
+        // Dummy data for demonstration purposes
+        List<Attraction> attractions = new ArrayList<>();
+        //Example---!>
+        attractions.add(new Attraction("Attraction 1", "Description 1"));
+        attractions.add(new Attraction("Attraction 2", "Description 2"));
+        // Add more attractions as needed
+        return attractions;
+    }
+
+
+
+
+
 
     public void getCurrentLocation() {
 
