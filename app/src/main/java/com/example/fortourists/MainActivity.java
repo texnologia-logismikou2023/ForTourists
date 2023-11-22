@@ -29,10 +29,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-
-
-
-//change3
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.List;
@@ -49,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //change1
+
     RecyclerView recyclerView;
     AttractionsAdapter attractionsAdapter;
 
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //change2
+
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recycler_attractions);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -107,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //change3
+
     private List<Attraction> getAttractions() {
         // Dummy data for demonstration purposes
         List<Attraction> attractions = new ArrayList<>();
         //Example---!>
-        attractions.add(new Attraction("Attraction 1", "Description 1"));
-        attractions.add(new Attraction("Attraction 2", "Description 2"));
+        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Description 1", 41.07510320962552, 23.55365103727739));
+        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Description 2", 41.07273866445464, 23.518218368797775));
         // Add more attractions as needed
         return attractions;
     }
@@ -147,7 +143,30 @@ public class MainActivity extends AppCompatActivity {
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Current Location !");
                             googleMap.addMarker(markerOptions);
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+
+
+
+
+                            //change
+                            List<Attraction> attractions = getAttractions();
+                            for (Attraction attraction : attractions) {
+                                LatLng attractionLocation = new LatLng(attraction.getLatitude(), attraction.getLongitude());
+
+                                MarkerOptions attractionMarker = new MarkerOptions()
+                                        .position(attractionLocation)
+                                        .title(attraction.getName())
+                                        .snippet(attraction.getDescription());
+
+                                googleMap.addMarker(attractionMarker);
+                            }
+
+
+
                         }
+
+
+
+
                         else {
                             Toast.makeText(MainActivity.this, "Please on your Location App Permissions", Toast.LENGTH_SHORT).show();
                         }
