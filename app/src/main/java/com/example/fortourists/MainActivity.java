@@ -17,6 +17,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -29,10 +31,28 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import java.util.List;
+import java.util.ArrayList;
+
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
+
+
+
+
+
+    RecyclerView recyclerView;
+    AttractionsAdapter attractionsAdapter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationProviderClient = (FusedLocationProviderClient) LocationServices.getFusedLocationProviderClient(this);
 
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).
+                //withPermission(Manifest.permission.ACCESS_FINE_LOCATION);
                 withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
@@ -60,7 +81,45 @@ public class MainActivity extends AppCompatActivity {
                         permissionToken.cancelPermissionRequest();
                     }
                 }).check();
+
+
+
+
+
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recycler_attractions);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Dummy data for demonstration purposes (replace with your data retrieval logic)
+        List<Attraction> attractions = getAttractions();
+
+        // Initialize AttractionsAdapter and set it to RecyclerView
+        attractionsAdapter = new AttractionsAdapter(attractions, this);
+        recyclerView.setAdapter(attractionsAdapter);
+
+
+
+
     }
+
+
+
+
+
+    private List<Attraction> getAttractions() {
+        // Dummy data for demonstration purposes
+        List<Attraction> attractions = new ArrayList<>();
+        //Example---!>
+        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Description 1", 41.07510320962552, 23.55365103727739));
+        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Description 2", 41.07273866445464, 23.518218368797775));
+        // Add more attractions as needed
+        return attractions;
+    }
+
+
+
+
+
 
     public void getCurrentLocation() {
 
@@ -86,7 +145,31 @@ public class MainActivity extends AppCompatActivity {
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Current Location !");
                             googleMap.addMarker(markerOptions);
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+
+
+
+
+                            //recent-changes
+                            List<Attraction> attractions = getAttractions();
+                            for (Attraction attraction : attractions) {
+                                LatLng attractionLocation = new LatLng(attraction.getLatitude(), attraction.getLongitude());
+
+                                MarkerOptions attractionMarker = new MarkerOptions()
+                                        .position(attractionLocation)
+                                        .title(attraction.getName())
+                                        .snippet(attraction.getDescription())
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+
+                                googleMap.addMarker(attractionMarker);
+                            }
+
+
+
                         }
+
+
+
+
                         else {
                             Toast.makeText(MainActivity.this, "Please on your Location App Permissions", Toast.LENGTH_SHORT).show();
                         }

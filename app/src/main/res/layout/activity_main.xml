@@ -40,5 +40,11 @@
 
     </fragment>
 
+    <!-- Add RecyclerView below the map (display attraction information below the map)-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_attractions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>
