@@ -107,11 +107,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     private List<Attraction> getAttractions() {
-        // Dummy data for demonstration purposes
         List<Attraction> attractions = new ArrayList<>();
-        //Example---!>
-        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Description 1", 41.07510320962552, 23.55365103727739));
-        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Description 2", 41.07273866445464, 23.518218368797775));
+        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Description", 41.07510320962552, 23.55365103727739));
+        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Description", 41.07273866445464, 23.518218368797775));
+        attractions.add(new Attraction("Ζιντζιρλί Τζαμί", "Description", 41.088289765940125, 23.55376149723361));
+        attractions.add(new Attraction("Λαογραφικό Μουσείο Σαρακατσάνων", "Description", 41.09437312336059, 23.555243797997516));
+        attractions.add(new Attraction("Παλαιά Μητρόπολη Σερρών", "Description", 41.09444428641045, 23.55394552607018));
+        attractions.add(new Attraction("Λαογραφικό Μουσείο Βλάχων", "Description", 41.09132004347515, 23.542257730408643));
+        attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Description", 41.104218519325904, 23.55200507125519));
+        attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Description", 41.104218519325904, 23.55200507125519));
+        attractions.add(new Attraction("Μουσείο Φυσικής Ιστορίας", "Description", 41.100335766847806, 23.56986527381822));
+        attractions.add(new Attraction("Κοτζά Μουσταφά Πασά Τζαμί", "Description", 41.086394590557255, 23.53459225449863));
+        attractions.add(new Attraction("Βυζαντινή Ακρόπολη Σερρών", "Description", 41.09723837669804, 23.551047820741562));
+        attractions.add(new Attraction("Μπεζεστένι", "Description", 41.09093358537034, 23.549356267992994));
+        attractions.add(new Attraction("Τέμενος Αχμέτ Πασά Τζαμί", "Description", 41.09167393281643, 23.559411979640146));
+        attractions.add(new Attraction("ΔΗ.ΠΕ.ΘΕ. Σερρών", "Description", 41.08894608215148, 23.54933113915748));
+        attractions.add(new Attraction("Ιερός Βυζαντινός Ναός Αγίου Γεωργίου Κρυονερίτου", "Description", 41.09641683286726, 23.56648293079135));
+        attractions.add(new Attraction("Κειμηλιαρχείο 'Ψυχῆς Ἄκος΄", "Description", 41.09512194520564, 23.552363129180897));
+        attractions.add(new Attraction("Ιερός Ναός Αγίου Νικολάου", "Description", 41.087450594661014, 23.56717889867483));
         // Add more attractions as needed
         return attractions;
     }
