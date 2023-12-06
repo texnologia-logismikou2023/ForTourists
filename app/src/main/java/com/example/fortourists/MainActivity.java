@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).
                 //withPermission(Manifest.permission.ACCESS_FINE_LOCATION);
-                withListener(new PermissionListener() {
+                        withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
                         getCurrentLocation();
@@ -108,23 +108,21 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Attraction> getAttractions() {
         List<Attraction> attractions = new ArrayList<>();
-        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Description", 41.07510320962552, 23.55365103727739));
-        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Description", 41.07273866445464, 23.518218368797775));
-        attractions.add(new Attraction("Ζιντζιρλί Τζαμί", "Description", 41.088289765940125, 23.55376149723361));
-        attractions.add(new Attraction("Λαογραφικό Μουσείο Σαρακατσάνων", "Description", 41.09437312336059, 23.555243797997516));
-        attractions.add(new Attraction("Παλαιά Μητρόπολη Σερρών", "Description", 41.09444428641045, 23.55394552607018));
-        attractions.add(new Attraction("Λαογραφικό Μουσείο Βλάχων", "Description", 41.09132004347515, 23.542257730408643));
+            attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Ιδρύθηκε το 2005 και άρχισε να λειτουργεί το 2008.", 41.07510320962552, 23.55365103727739));
+        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Πίστα αγώνων αυτοκινήτων.", 41.07273866445464, 23.518218368797775));
+        attractions.add(new Attraction("Ζιντζιρλί Τζαμί", "Μεσαίου μεγέθους, περιλαμβάνει τετράγωνο χώρο προσευχής με διώροφη στοά με κιονοστοιχία", 41.088289765940125, 23.55376149723361));
+        attractions.add(new Attraction("Λαογραφικό Μουσείο Σαρακατσάνων", "Μουσείο για την ιστορία και τον πολιτισμό των Σαρακατσάνων.", 41.09437312336059, 23.555243797997516));
+        attractions.add(new Attraction("Παλαιά Μητρόπολη Σερρών", "Βυζαντινός χριστιανικός ναός.", 41.09444428641045, 23.55394552607018));
+        attractions.add(new Attraction("Λαογραφικό Μουσείο Βλάχων", "Μουσείο για την ιστορία και τον πολιτισμό των Βλάχων.", 41.09132004347515, 23.542257730408643));
         attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Description", 41.104218519325904, 23.55200507125519));
-        attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Description", 41.104218519325904, 23.55200507125519));
-        attractions.add(new Attraction("Μουσείο Φυσικής Ιστορίας", "Description", 41.100335766847806, 23.56986527381822));
-        attractions.add(new Attraction("Κοτζά Μουσταφά Πασά Τζαμί", "Description", 41.086394590557255, 23.53459225449863));
-        attractions.add(new Attraction("Βυζαντινή Ακρόπολη Σερρών", "Description", 41.09723837669804, 23.551047820741562));
-        attractions.add(new Attraction("Μπεζεστένι", "Description", 41.09093358537034, 23.549356267992994));
-        attractions.add(new Attraction("Τέμενος Αχμέτ Πασά Τζαμί", "Description", 41.09167393281643, 23.559411979640146));
-        attractions.add(new Attraction("ΔΗ.ΠΕ.ΘΕ. Σερρών", "Description", 41.08894608215148, 23.54933113915748));
-        attractions.add(new Attraction("Ιερός Βυζαντινός Ναός Αγίου Γεωργίου Κρυονερίτου", "Description", 41.09641683286726, 23.56648293079135));
-        attractions.add(new Attraction("Κειμηλιαρχείο 'Ψυχῆς Ἄκος΄", "Description", 41.09512194520564, 23.552363129180897));
-        attractions.add(new Attraction("Ιερός Ναός Αγίου Νικολάου", "Description", 41.087450594661014, 23.56717889867483));
+        attractions.add(new Attraction("Μουσείο Φυσικής Ιστορίας", "Ενημέρωση του επισκέπτη για το φυσικό περιβάλλον του τόπου μας.", 41.100335766847806, 23.56986527381822));
+        attractions.add(new Attraction("Κοτζά Μουσταφά Πασά Τζαμί", "Τζαμί με τη κατάκτηση των Οθομανών το 1383.", 41.086394590557255, 23.53459225449863));
+        attractions.add(new Attraction("Βυζαντινή Ακρόπολη Σερρών", "Πάνω σε λόφο γνωστό ως Κουλάς, βρίσκεται η αρχαία ακρόπολη.", 41.09723837669804, 23.551047820741562));
+        attractions.add(new Attraction("Μπεζεστένι", "Το Μπεζεστένι ήταν ένας πολύ σημαντικός θεσμός των οθωμανικών πόλεων.", 41.09093358537034, 23.549356267992994));
+        attractions.add(new Attraction("Τέμενος Αχμέτ Πασά Τζαμί", "Ένα από τα σημαντικότερα κτίρια οθωμανικής αρχιτεκτονικής στην περιοχή.", 41.09167393281643, 23.559411979640146));
+        attractions.add(new Attraction("ΔΗ.ΠΕ.ΘΕ. Σερρών", "Ένα από τα πρώτα ΔΗ.ΠΕ.ΘΕ. που δημιουργήθηκαν από το Υπουργείο Πολιτισμού.", 41.08894608215148, 23.54933113915748));
+        attractions.add(new Attraction("Ιερός Βυζαντινός Ναός Αγίου Γεωργίου Κρυονερίτου", "Η ονομασία του οφείλεται σε πηγή κρύου νερού, η οποία βρισκόταν σε κοντινή απόσταση.", 41.09641683286726, 23.56648293079135));
+        attractions.add(new Attraction("Κειμηλιαρχείο 'Ψυχῆς Ἄκος΄", "Κεντρο μείζονος σημασίας για τήν εκκλησιαστική, πνευματική και τοπική καλλιτεχνική δημιουργία.", 41.09512194520564, 23.552363129180897));
         // Add more attractions as needed
         return attractions;
     }
