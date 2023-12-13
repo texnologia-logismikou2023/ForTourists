@@ -8,7 +8,9 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -44,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
 
+    static final int Request_code = 101;
 
+    private GoogleMap mMap;
 
-
-
+    private double lat, lng;
+    ImageButton atm,bank,hosp,res;
     RecyclerView recyclerView;
     AttractionsAdapter attractionsAdapter;
 
@@ -60,6 +64,95 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
+
+        atm=findViewById(R.id.atm);
+        bank=findViewById(R.id.bank);
+        hosp=findViewById(R.id.hospital);
+        res=findViewById(R.id.res);
+
+        atm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder stringBuilder =new StringBuilder
+                        ("http://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+                stringBuilder.append("location="+lat+","+lng);
+                stringBuilder.append("&radius=1000");
+                stringBuilder.append("&type=atm");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key="+getResources().getString(R.string.google_maps_key));
+
+                String url = stringBuilder.toString();
+                Object dataFetch[]= new Object[2];
+                dataFetch[0]=mMap;
+                dataFetch[1]=url;
+
+                FetchData fetchData= new FetchData();
+                fetchData.execute(dataFetch);
+            }
+        });
+
+        res.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder stringBuilder =new StringBuilder
+                        ("http://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+                stringBuilder.append("location="+lat+","+lng);
+                stringBuilder.append("&radius=1000");
+                stringBuilder.append("&type=restaurants");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key="+getResources().getString(R.string.google_maps_key));
+
+                String url = stringBuilder.toString();
+                Object dataFetch[]= new Object[2];
+                dataFetch[0]=mMap;
+                dataFetch[1]=url;
+
+                FetchData fetchData= new FetchData();
+                fetchData.execute(dataFetch);
+            }
+        });
+
+        bank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder stringBuilder =new StringBuilder
+                        ("http://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+                stringBuilder.append("location="+lat+","+lng);
+                stringBuilder.append("&radius=1000");
+                stringBuilder.append("&type=bank");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key="+getResources().getString(R.string.google_maps_key));
+
+                String url = stringBuilder.toString();
+                Object dataFetch[]= new Object[2];
+                dataFetch[0]=mMap;
+                dataFetch[1]=url;
+
+                FetchData fetchData= new FetchData();
+                fetchData.execute(dataFetch);
+            }
+        });
+
+        hosp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder stringBuilder =new StringBuilder
+                        ("http://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+                stringBuilder.append("location="+lat+","+lng);
+                stringBuilder.append("&radius=1000");
+                stringBuilder.append("&type=hospital");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key="+getResources().getString(R.string.google_maps_key));
+
+                String url = stringBuilder.toString();
+                Object dataFetch[]= new Object[2];
+                dataFetch[0]=mMap;
+                dataFetch[1]=url;
+
+                FetchData fetchData= new FetchData();
+                fetchData.execute(dataFetch);
+            }
+        });
 
         fusedLocationProviderClient = (FusedLocationProviderClient) LocationServices.getFusedLocationProviderClient(this);
 
@@ -145,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Current Location !");
                             googleMap.addMarker(markerOptions);
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-
+                            lat=location.getLatitude();
+                            lng=location.getLongitude();
 
 
 
