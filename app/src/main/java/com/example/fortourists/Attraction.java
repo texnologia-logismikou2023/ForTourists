@@ -2,6 +2,7 @@ package com.example.fortourists;
 
 // Class representing an attraction with name, description, latitude, and longitude
 public class Attraction {
+
     // Fields to store the information about the attraction
     private String name;
     private String description;

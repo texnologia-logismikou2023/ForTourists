@@ -30,6 +30,7 @@ public class AttractionsAdapter extends RecyclerView.Adapter<AttractionsAdapter.
         return new AttractionViewHolder(view);
     }
 
+
     // Binds the data to the ViewHolder
     @Override
     public void onBindViewHolder(@NonNull AttractionViewHolder holder, int position) {
