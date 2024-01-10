@@ -3,14 +3,12 @@ package com.example.fortourists;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,24 +28,16 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.List;
 import java.util.ArrayList;
 
 
-
-
 public class MainActivity extends AppCompatActivity {
 
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
-
-
-
-
-
     RecyclerView recyclerView;
     AttractionsAdapter attractionsAdapter;
 
@@ -82,57 +72,39 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).check();
 
-
-
-
-
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recycler_attractions);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Dummy data for demonstration purposes (replace with your data retrieval logic)
         List<Attraction> attractions = getAttractions();
 
         // Initialize AttractionsAdapter and set it to RecyclerView
         attractionsAdapter = new AttractionsAdapter(attractions, this);
         recyclerView.setAdapter(attractionsAdapter);
 
-
-
-
     }
 
-
-
-
-
+    // Method to retrieve attractions data
     private List<Attraction> getAttractions() {
         List<Attraction> attractions = new ArrayList<>();
-        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Description", 41.07510320962552, 23.55365103727739));
-        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Description", 41.07273866445464, 23.518218368797775));
-        attractions.add(new Attraction("Ζιντζιρλί Τζαμί", "Description", 41.088289765940125, 23.55376149723361));
-        attractions.add(new Attraction("Λαογραφικό Μουσείο Σαρακατσάνων", "Description", 41.09437312336059, 23.555243797997516));
-        attractions.add(new Attraction("Παλαιά Μητρόπολη Σερρών", "Description", 41.09444428641045, 23.55394552607018));
-        attractions.add(new Attraction("Λαογραφικό Μουσείο Βλάχων", "Description", 41.09132004347515, 23.542257730408643));
-        attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Description", 41.104218519325904, 23.55200507125519));
-        attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Description", 41.104218519325904, 23.55200507125519));
-        attractions.add(new Attraction("Μουσείο Φυσικής Ιστορίας", "Description", 41.100335766847806, 23.56986527381822));
-        attractions.add(new Attraction("Κοτζά Μουσταφά Πασά Τζαμί", "Description", 41.086394590557255, 23.53459225449863));
-        attractions.add(new Attraction("Βυζαντινή Ακρόπολη Σερρών", "Description", 41.09723837669804, 23.551047820741562));
-        attractions.add(new Attraction("Μπεζεστένι", "Description", 41.09093358537034, 23.549356267992994));
-        attractions.add(new Attraction("Τέμενος Αχμέτ Πασά Τζαμί", "Description", 41.09167393281643, 23.559411979640146));
-        attractions.add(new Attraction("ΔΗ.ΠΕ.ΘΕ. Σερρών", "Description", 41.08894608215148, 23.54933113915748));
-        attractions.add(new Attraction("Ιερός Βυζαντινός Ναός Αγίου Γεωργίου Κρυονερίτου", "Description", 41.09641683286726, 23.56648293079135));
-        attractions.add(new Attraction("Κειμηλιαρχείο 'Ψυχῆς Ἄκος΄", "Description", 41.09512194520564, 23.552363129180897));
-        attractions.add(new Attraction("Ιερός Ναός Αγίου Νικολάου", "Description", 41.087450594661014, 23.56717889867483));
+        attractions.add(new Attraction("ΔΙ.ΠΑ.Ε. Σερρών", "Ιδρύθηκε το 1983 ως «ΤΕΙ Σερρών» και εντάχθηκε στην Ανώτατη Εκπαίδευση.", 41.07510320962552, 23.55365103727739));
+        attractions.add(new Attraction("Αυτοκινητοδρόμιο Σερρών", "Πίστα αγώνων αυτοκινήτων ", 41.07273866445464, 23.518218368797775));
+        attractions.add(new Attraction("Ζιντζιρλί Τζαμί", "Ολοκληρώθηκε απο τα παιδιά της Σελτζούκ Σουλτάνστη στη μνήμη της μητέρας τους", 41.088289765940125, 23.55376149723361));
+        attractions.add(new Attraction("Λαογραφικό Μουσείο Σαρακατσάνων", "Μουσείο ιστορίας και τον πολιτισμού των Σαρακατσάνων.", 41.09437312336059, 23.555243797997516));
+        attractions.add(new Attraction("Παλαιά Μητρόπολη Σερρών", "Βυζαντινός χριστιανικός ναός.", 41.09444428641045, 23.55394552607018));
+        attractions.add(new Attraction("Λαογραφικό Μουσείο Βλάχων", "Σκοπός η διατήρηση, η ανάδειξη και η διάδοση του πολιτισμού των Βλάχων ", 41.09132004347515, 23.542257730408643));
+        attractions.add(new Attraction("Κοιλάδα Αγίων Αναργύρων", "Mία  από τις ωραιότερες περιπατητικές διαδρομές.", 41.104218519325904, 23.55200507125519));
+        attractions.add(new Attraction("Κοτζά Μουσταφά Πασά Τζαμί", "1 εκ των 3 Τζαμιών που σώζονται εώς και σήμερα στη πόλη των Σερρών.", 41.086394590557255, 23.53459225449863));
+        attractions.add(new Attraction("Βυζαντινή Ακρόπολη Σερρών", "Στα βόρεια, πάνω στο λόφο Κουλάς, βρίσκεται η ακρόπολη.", 41.09723837669804, 23.551047820741562));
+        attractions.add(new Attraction("Μπεζεστένι", "Το Μπεζεστένι αποτελεί σημαντικό θεσμό των οθωμανικών πόλεων.", 41.09093358537034, 23.549356267992994));
+        attractions.add(new Attraction("Τέμενος Αχμέτ Πασά Τζαμί", "Ένα από τα σημαντικότερα κτίρια οθωμανικής αρχιτεκτονικής στην περιοχή.", 41.09167393281643, 23.559411979640146));
+        attractions.add(new Attraction("ΔΗ.ΠΕ.ΘΕ. Σερρών", "Ένα από τα πρώτα ΔΗ.ΠΕ.ΘΕ. που δημιουργήθηκαν από το Υπουργείο Πολιτισμού.", 41.08894608215148, 23.54933113915748));
+        attractions.add(new Attraction("Ιερός Βυζαντινός Ναός Αγίου Γεωργίου Κρυονερίτου", "Η ονομασία οφείλεται σε πηγή νερού σε κοντινή απόσταση.", 41.09641683286726, 23.56648293079135));
+        attractions.add(new Attraction("Κειμηλιαρχείο 'Ψυχῆς Ἄκος΄", "Υπάρχουν εκτιθέμενα ιερά και πανσεβάσμια κειμήλια.", 41.09512194520564, 23.552363129180897));
+        attractions.add(new Attraction("Ιερός Ναός Αγίου Νικολάου", "Μεγάλη εκκλησία, βρίσκεται στη κεντρική λεωφόρο Αγίου Νικολαου.", 41.087450594661014, 23.56717889867483));
         // Add more attractions as needed
         return attractions;
     }
-
-
-
-
-
 
     public void getCurrentLocation() {
 
@@ -154,15 +126,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onMapReady(@NonNull GoogleMap googleMap) {
                         if(location != null){
+                            // Add a marker for the current location
                             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Current Location !");
                             googleMap.addMarker(markerOptions);
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
 
-
-
-
-                            //recent-changes
+                            // Add markers for attractions
                             List<Attraction> attractions = getAttractions();
                             for (Attraction attraction : attractions) {
                                 LatLng attractionLocation = new LatLng(attraction.getLatitude(), attraction.getLongitude());
@@ -176,14 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                 googleMap.addMarker(attractionMarker);
                             }
 
-
-
-                        }
-
-
-
-
-                        else {
+                        } else {
                             Toast.makeText(MainActivity.this, "Please on your Location App Permissions", Toast.LENGTH_SHORT).show();
                         }
                     }
